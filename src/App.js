@@ -1,10 +1,29 @@
-import CollapseCard from "./components/CollapseCard";
+import { Routes, Route } from "react-router-dom";
+
+import Header from "./Pages/Shared/Header";
+import Homepage from "./Pages/Homepage/Homepage";
+import Menu from "./Pages/Menu/Menu";
+import Cart from "./Pages/Cart/Cart";
+import CheckOut from "./Pages/CheckOut/CheckOut";
+import Contact from "./Pages/Contact/Contact";
+import Error from "./Pages/Error/Error";
+import Login from "./Pages/Login.js/Login";
+import Register from "./Pages/Register.js/Register";
 
 function App() {
   return (
     <>
-      <CollapseCard title="Burgers" image="https://picsum.photos/1200/200" />
-      <CollapseCard title="Pasta" image="https://picsum.photos/1200/200" />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<CheckOut />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </>
   );
 }

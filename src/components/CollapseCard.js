@@ -2,7 +2,10 @@ import React from "react";
 
 import GridCard from "./GridCard";
 
-const CollapseCard = ({ title = "Title", image }) => {
+const CollapseCard = ({
+  title = "Title",
+  image = "https://picsum.photos/1200/200",
+}) => {
   return (
     <div class="collapse">
       <input type="checkbox" />
