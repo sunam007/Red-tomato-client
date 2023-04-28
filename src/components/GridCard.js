@@ -2,7 +2,7 @@ import React from "react";
 
 function GridCard({ title, subTitle, image }) {
   return (
-    <div className="card card-compact w-96 bg-base-100 shadow-xl m-4">
+    <div className="card card-compact rounded-none w-64 bg-base-100 shadow-xl m-4">
       <figure>
         <img src={image} alt="Shoes" />
       </figure>
@@ -15,7 +15,7 @@ function GridCard({ title, subTitle, image }) {
           <p>
             <span>from</span> $9.99
           </p>
-          <button className="btn btn-outline btn-primary btn-sm">
+          <button className="btn btn-outline btn-primary btn-sm rounded-none">
             Add to Cart
           </button>
         </div>

@@ -43,7 +43,7 @@ const Header = () => {
           to="/"
           className="btn btn-ghost normal-case text-xl ml-4 md:ml-8"
         >
-          daisyUI
+          Red Tomato
         </NavLink>
       </div>
 
@@ -71,7 +71,7 @@ const Header = () => {
       <div className="navbar-end mr-4 md:mr-8">
         <div className="flex">
           <HeaderCartIndicator itemCount="4" />
-          <HeaderAvator />
+          <HeaderAvator image="https://i.ibb.co/S6KKK9D/Avatar.jpg" />
         </div>
       </div>
     </div>

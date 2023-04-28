@@ -9,10 +9,12 @@ import Contact from "./Pages/Contact/Contact";
 import Error from "./Pages/Error/Error";
 import Login from "./Pages/Login.js/Login";
 import Register from "./Pages/Register.js/Register";
+import Footer from "./Pages/Shared/Footer";
 
 function App() {
   return (
     <>
+      {/* After testing , move this router to a Layout Component */}
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -24,6 +26,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<Error />} />
       </Routes>
+      <Footer />
     </>
   );
 }

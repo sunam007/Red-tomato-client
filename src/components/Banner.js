@@ -1,18 +1,19 @@
 import React from "react";
-import background from "../assets/background5.jpg";
 
-function Banner({ title = "Title", subTitle = "lorem ipsum dolor set" }) {
+function Banner({
+  title = "Title",
+  subTitle,
+  image = "https://picsum.photos/1400",
+}) {
   return (
     <div
       style={{
-        backgroundImage: `url(${background})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundImage: `url(${image})`,
       }}
-      className="bg-bottom text-right h-48 md:h-96 flex flex-col items-center justify-center "
+      className="bg-no-repeat bg-cover bg-bottom  h-24 sm:h-32 md:h-48 lg:h-64 xl:h-96 flex flex-col items-center justify-center "
     >
-      <h1 className="text-2xl md:text-5xl text-white">{title}</h1>
-      <p className="text-lg md:text-xl text-gray-300">{subTitle}</p>
+      <h1 className="text-2xl md:text-5xl text-gray-100">{title}</h1>
+      <p className="text-lg md:text-xl text-gray-400">{subTitle}</p>
     </div>
   );
 }
