@@ -1,11 +1,12 @@
 import React from "react";
-import SubMenuCard from "../../components/SubMenuCard";
+
+import FoodItemCard from "../../components/FoodItemCard";
 
 const Cart = () => {
   return (
     <div>
       <h1>This is Cart</h1>
-      <SubMenuCard />
+      <FoodItemCard />
     </div>
   );
 };

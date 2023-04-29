@@ -1,6 +1,6 @@
 import React from "react";
 
-function SubMenuCard({
+function FoodItemCard({
   title = "Title",
   subTitle = "Sub Title",
   image = "https://images.pexels.com/photos/7989741/pexels-photo-7989741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -21,13 +21,13 @@ function SubMenuCard({
         <p className="text-center text-gray-800 mt-1">€1299</p>
         <div className="inline-flex items-center mt-2">
           <button className="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-2 border-r border-gray-200">
-            <i class="fa-solid fa-minus" />
+            <i className="fa-solid fa-minus" />
           </button>
           <div className="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
             2
           </div>
           <button className="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-2 border-r border-gray-200">
-            <i class="fa-solid fa-plus " />
+            <i className="fa-solid fa-plus " />
           </button>
         </div>
         <button className="py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 mt-4 w-full flex items-baseline justify-center">
@@ -39,4 +39,4 @@ function SubMenuCard({
   );
 }
 
-export default SubMenuCard;
+export default FoodItemCard;

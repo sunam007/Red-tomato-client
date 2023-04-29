@@ -1,6 +1,12 @@
 import React from "react";
 
-function GridCard({ title, subTitle, image }) {
+// This component is depricated and replaced by <FoodItemCard/>
+
+function GridCard({
+  title = "Title",
+  subTitle = "Sub Title",
+  image = "https://picsum.photos/400",
+}) {
   return (
     <div className="card card-compact rounded-none w-64 bg-base-100 shadow-xl m-4">
       <figure>
