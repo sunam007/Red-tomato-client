@@ -1,6 +1,6 @@
 import React from "react";
 
-import GridCard from "./GridCard";
+import SubMenuCard from "./SubMenuCard";
 
 const MainMenuCard = ({
   title = "Title",
@@ -31,36 +31,12 @@ const MainMenuCard = ({
         </svg>
       </div>
       <div class=" w-9/12 mx-auto collapse-content flex flex-wrap justify-center items-center">
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
-        <GridCard
-          title="Title"
-          subTitle="subTitle"
-          image="https://picsum.photos/500/300"
-        />
+        <SubMenuCard />
+        <SubMenuCard />
+        <SubMenuCard />
+        <SubMenuCard />
+        <SubMenuCard />
+        <SubMenuCard />
       </div>
     </div>
   );

@@ -1,15 +1,13 @@
 import React from "react";
+
 import Banner from "../../components/Banner";
-import MainMenuCard from "../../components/MainMenuCard";
+import CategoryGridLayout from "../../components/CategoryGridLayout";
 
 const Menu = () => {
   return (
     <div className="bg-white">
       <Banner title="MENU" image="https://i.ibb.co/ygJzNNP/background5.jpg" />
-      <MainMenuCard />
-      <MainMenuCard />
-      <MainMenuCard />
-      <MainMenuCard />
+      <CategoryGridLayout />
     </div>
   );
 };

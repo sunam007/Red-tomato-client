@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
   return (
@@ -13,16 +14,7 @@ const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
         className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
       >
         <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
-        <li>
-          <a>Settings</a>
-        </li>
-        <li>
-          <a>Logout</a>
+          <NavLink to="/login">Logout</NavLink>
         </li>
       </ul>
     </div>
