@@ -7,7 +7,7 @@ function FoodCategoryCard({
   image = "https://picsum.photos/id/223/400",
 }) {
   return (
-    <Link to="/cart">
+    <Link to={`/dish/${title}`}>
       <div
         style={{ backgroundImage: `url(${image})` }}
         className="h-64 w-64 bg-no-repeat object-fill transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-110 flex justify-center items-end"

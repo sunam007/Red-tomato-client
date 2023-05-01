@@ -10,6 +10,7 @@ import Error from "./Pages/Error/Error";
 import Login from "./Pages/Login.js/Login";
 import Register from "./Pages/Register.js/Register";
 import Footer from "./Pages/Shared/Footer";
+import Dishes from "./Pages/Dishes/Dishes";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/dish/:foodCategory" element={<Dishes />} />
+        <Route path="/cart/" element={<Cart />} />
         <Route path="/checkout" element={<CheckOut />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />

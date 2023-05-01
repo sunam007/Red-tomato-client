@@ -1,11 +1,14 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import Banner from "../../components/Banner";
 
 import FoodItemCard from "../../components/FoodItemCard";
 
 const Cart = () => {
+ 
   return (
     <div>
-      <h1>This is Cart</h1>
+      <Banner title=""/>
       <FoodItemCard />
     </div>
   );
