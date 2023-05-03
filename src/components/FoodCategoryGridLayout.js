@@ -2,17 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import FoodCategoryCard from "./FoodCategoryCard";
+import { API_CATEGORIES } from "../api/endpoints";
 
 function FoodCategoryGridLayout(props) {
   const [categories, setCategories] = useState([]);
   // console.log(categories);
 
-  const baseUrl = "https://www.themealdb.com/api/json/v1/1"; // the meal db api base url
-  
-
   useEffect(() => {
     axios
-      .get(`${baseUrl}/categories.php`) // meal db complete url
+      .get(API_CATEGORIES)
       .then((response) => setCategories(response.data.categories))
       .catch((err) => console.error(err));
   }, []);
