@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import FoodContext from "../context/FoodContext";
 
 function FoodItemCard({
   title = "Title",
@@ -8,11 +10,17 @@ function FoodItemCard({
   image = "https://picsum.photos/1200",
   idMeal,
 }) {
-  const [amount, setAmount] = useState(1);
+  const [quantity, setQuantity] = useState(1);
   // const [isDisabled, setIsDisabled] = useState(false);
+
+  const { setMeal } = useContext(FoodContext);
 
   const handleAddToCart = (mealId) => {
     console.log(" Meal Clicked >> ", mealId);
+    axios
+      .get(`http://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`) // meal look up by idMeal
+      .then((response) => setMeal(response.data.meals))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -36,18 +44,18 @@ function FoodItemCard({
 
         <div className="inline-flex items-center mt-2">
           <button
-            onClick={() => setAmount(amount - 1)}
+            onClick={() => setQuantity(quantity - 1)}
             className="bg-white rounded-l border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-2 border-r border-gray-200"
           >
             <i className="fa-solid fa-minus" />
           </button>
 
           <div className="bg-gray-100 border-t border-b border-gray-100 text-gray-600 hover:bg-gray-100 inline-flex items-center px-4 py-1 select-none">
-            {amount}
+            {quantity}
           </div>
 
           <button
-            onClick={() => setAmount(amount + 1)}
+            onClick={() => setQuantity(quantity + 1)}
             className="bg-white rounded-r border text-gray-600 hover:bg-gray-100 active:bg-gray-200 disabled:opacity-50 inline-flex items-center px-2 py-2 border-r border-gray-200"
           >
             <i className="fa-solid fa-plus " />

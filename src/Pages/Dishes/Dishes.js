@@ -13,7 +13,7 @@ function Dishes() {
 
   useEffect(() => {
     axios
-      .get(`${API_FILTER_CATEGORIES}?c=${foodCategory}`) // the-meal-db api complete url
+      .get(`${API_FILTER_CATEGORIES}?c=${foodCategory}`)
       .then((response) => setMeals(response.data.meals))
       .catch((err) => console.error(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps

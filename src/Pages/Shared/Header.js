@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import HeaderAvator from "../../components/HeaderAvator";
 import HeaderCartIndicator from "../../components/HeaderCartIndicator";
@@ -39,12 +39,12 @@ const Header = () => {
             </li>
           </ul>
         </div>
-        <NavLink
+        <Link
           to="/"
-          className="btn btn-ghost normal-case text-xl ml-4 md:ml-8"
+          className="btn btn-ghost normal-case text-xl ml-4 md:ml-8 text-red-500"
         >
           Red Tomato
-        </NavLink>
+        </Link>
       </div>
 
       <div className="navbar-center hidden lg:flex">

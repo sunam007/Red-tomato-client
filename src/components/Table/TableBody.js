@@ -13,18 +13,18 @@ function TableBody({
         <th>
           <label>
             <button className="btn btn-ghost">
-              <i class="fa-solid fa-xmark"></i>
+              <i className="fa-solid fa-xmark"></i>
             </button>
           </label>
         </th>
         <th>
           <div className="flex items-center space-x-8">
             <div className="avatar">
-              <div className=" w-16 h-16 rounded">
+              <div className=" w-16  rounded">
                 <img src={image} alt="Avatar Tailwind CSS Component" />
               </div>
             </div>
-            <div class="font-bold">{title}</div>
+            <div className="font-bold">{title}</div>
           </div>
         </th>
         <th>{price}</th>
