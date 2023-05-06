@@ -2,9 +2,8 @@ import React from "react";
 
 function TableBody({
   title = "Zemlak, Daniel and Leannon",
-  price = 9.99,
+  price = 5,
   quantity = 1,
-  total = 9.99,
   image = "https://picsum.photos/200",
 }) {
   return (
@@ -27,9 +26,9 @@ function TableBody({
             <div className="font-bold">{title}</div>
           </div>
         </th>
-        <th>{price}</th>
+        <th>${price}</th>
         <th>{quantity}</th>
-        <th>{total}</th>
+        <th>${price * quantity}</th>
       </tr>
     </tbody>
   );

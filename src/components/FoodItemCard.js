@@ -1,12 +1,14 @@
-import axios from "axios";
 import React, { useContext, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
+import "./FoodItemCard.css";
+
 import FoodContext from "../context/FoodContext";
 
 function FoodItemCard({
   title = "Title",
   subTitle = "Sub Title",
-  price = 9.99,
+  price = 5,
   image = "https://picsum.photos/1200",
   idMeal,
 }) {
@@ -17,21 +19,36 @@ function FoodItemCard({
 
   const handleAddToCart = (mealId) => {
     console.log(" Meal Clicked >> ", mealId);
+
     axios
-      .get(`http://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`) // meal look up by idMeal
-      .then((response) => setMeal(response.data.meals))
-      .catch((err) => console.log(err));
+      .get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+      .then((res) => {
+        const updatedMeals = res.data?.meals.map((mealItem) => ({
+          ...mealItem,
+          strPrice: price,
+          strQuantity: quantity,
+        }));
+
+        setMeal(updatedMeals);
+        const updatedMealsObject = updatedMeals[0];
+
+        axios
+          .post("http://localhost:5000/orders", updatedMealsObject)
+          .then((response) => {
+            console.log(response);
+          });
+      });
   };
 
   return (
-    <div className="w-72 overflow-hidden bg-white shadow rounded">
+    <div className="w-64  overflow-hidden bg-white shadow rounded">
       <div
-        className="h-64 w-full bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center"
+        className="h-48 w-full card-image"
         style={{ backgroundImage: `url(${image})` }}
       ></div>
 
       <div
-        className="p-4 flex flex-col items-center tooltip"
+        className="pt-2 flex flex-col items-center tooltip"
         data-tip={`${title}`}
       >
         <h1 className="text-gray-800 text-center mt-1 truncate">{title}</h1>
@@ -68,7 +85,7 @@ function FoodItemCard({
             className="py-2 px-4 mb bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 my-4 w-full flex items-baseline justify-center"
           >
             Add to cart
-            <i className="fa-solid fa-cart-shopping h-6 w-6 ml-2" />
+            <i className="fa-solid fa-cart-shopping icon-spacing" />
           </button>
         </Link>
       </div>

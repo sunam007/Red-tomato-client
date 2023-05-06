@@ -1,0 +1,6 @@
+.icon-spacing {
+  @apply h-6 w-6 ml-2;
+}
+.card-image {
+  @apply bg-gray-200 flex flex-col justify-between p-4 bg-cover bg-center;
+}
