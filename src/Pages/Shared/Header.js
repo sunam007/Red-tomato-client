@@ -3,10 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 
 import HeaderAvator from "../../components/HeaderAvator";
 import HeaderCartIndicator from "../../components/HeaderCartIndicator";
-import CartContext from "../../context/CartContext";
+import FoodContext from "../../context/FoodContext";
 
 const Header = () => {
-  const { orders } = useContext(CartContext);
+  const { itemsInTheCart } = useContext(FoodContext);
   return (
     <div className="navbar bg-gray-950">
       <div className="navbar-start ">
@@ -72,7 +72,7 @@ const Header = () => {
       </div>
       <div className="navbar-end mr-4 md:mr-8">
         <div className="flex">
-          <HeaderCartIndicator itemCount={orders.length} />
+          <HeaderCartIndicator itemCount={itemsInTheCart.length} />
           <HeaderAvator image="https://i.ibb.co/S6KKK9D/Avatar.jpg" />
         </div>
       </div>

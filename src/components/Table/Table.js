@@ -3,18 +3,18 @@ import React, { useContext } from "react";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import TableFooter from "./TableFooter";
-import CartContext from "../../context/CartContext";
+import FoodContext from "../../context/FoodContext";
 
 function Table() {
-  const { orders } = useContext(CartContext);
+  const { itemsInTheCart } = useContext(FoodContext);
 
   return (
     <table className="table w-9/12">
       <TableHeader />
-      {orders ? (
-        orders.map((item) => (
+      {itemsInTheCart ? (
+        itemsInTheCart.map((item) => (
           <TableBody
-            key={item.idMeal}
+            key={item._id}
             title={item.strMeal}
             image={item.strMealThumb}
             price={item.strPrice}
@@ -22,7 +22,7 @@ function Table() {
           />
         ))
       ) : (
-        <div>"No items in the cart"</div>
+        <h1>"No items in the cart"</h1>
       )}
       <TableFooter />
     </table>

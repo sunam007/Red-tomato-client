@@ -28,12 +28,7 @@ function Dishes() {
 
       <div className="w-10/12 mx-auto my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center items-center">
         {meals.map((meal) => (
-          <FoodItemCard
-            key={meal.idMeal}
-            title={meal.strMeal}
-            image={meal.strMealThumb}
-            idMeal={meal.idMeal}
-          />
+          <FoodItemCard key={meal.idMeal} meal={meal} />
         ))}
       </div>
     </div>
