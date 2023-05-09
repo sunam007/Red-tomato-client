@@ -1,0 +1,3 @@
+.text-input {
+  @apply input input-bordered rounded-none input-md w-full max-w-xs;
+}
