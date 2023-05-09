@@ -1,9 +1,12 @@
 import React from "react";
+import BookTable from "./BookTable";
+import Hero from "./Hero";
 
 const Homepage = () => {
   return (
     <div>
-      <h1>This is Homepage</h1>
+      <Hero />
+      <BookTable />
     </div>
   );
 };
