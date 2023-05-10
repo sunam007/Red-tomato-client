@@ -6,11 +6,14 @@ import RestaurantInfo from "../../components/RestaurantInfo";
 const Contact = () => {
   return (
     <div className="bg-white">
-      <Banner title="CART" image="https://i.ibb.co/ygJzNNP/background5.jpg" />
+      <Banner
+        title="CONTACT"
+        image="https://i.ibb.co/ygJzNNP/background5.jpg"
+      />
 
       <div className="flex flex-col-reverse md:flex-row justify-center md:items-baseline md:space-x-32 lg:space-x-64">
         <RestaurantInfo />
-        <ContactForm />
+        <ContactForm /> {/*Form eventhandler is on this component */}
       </div>
     </div>
   );
