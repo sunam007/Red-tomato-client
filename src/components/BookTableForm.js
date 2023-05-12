@@ -1,7 +1,14 @@
+import React, { useState } from "react";
 import axios from "axios";
-import React from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import addDays from "date-fns/addDays";
+
+import "./BookTableForm.css";
 
 function BookTableForm() {
+  const [date, setDate] = useState(null);
+
   const handleBookTable = (event) => {
     event.preventDefault();
 
@@ -21,11 +28,11 @@ function BookTableForm() {
       date,
       time,
     };
-
-    axios
-      .post("http://localhost:5000/bookings", { bookingInfo })
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    console.log(bookingInfo);
+    // axios
+    //   .post("http://localhost:5000/bookings", { bookingInfo })
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
 
     form.reset();
   };
@@ -36,43 +43,57 @@ function BookTableForm() {
           name="fullName"
           type="text"
           placeholder="Full Name"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
         <input
           name="email"
           type="email"
           placeholder="Email"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
         <input
           name="phone"
           type="number"
           placeholder="Your Phone"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
         <input
           name="guests"
           type="number"
           placeholder="Number of Guests"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
-        <input
-          name="date"
-          type="date"
-          placeholder="Date"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+        <DatePicker
+          showIcon
+          placeholderText="Date"
+          selected={date}
+          onChange={(date) => setDate(date)}
+          dateFormat={"dd/MM/yyyy"} //  MM in capital letter
+          minDate={new Date()} // todays date is the minimum date
+          maxDate={addDays(new Date(), 15)}
+          isClearable
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
+
+        <DatePicker
+          showIcon
+          placeholderText="Date"
+          selected={date}
+          onChange={(date) => setDate(date)}
+          dateFormat={"dd/MM/yyyy"} //  MM in capital letter
+          minDate={new Date()} // todays date is the minimum date
+          maxDate={addDays(new Date(), 15)}
+          isClearable
+          className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+        />
+        <div></div>
+
         <input
-          name="time"
-          type="time"
-          placeholder="Time"
-          className="input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
+          type="submit"
+          value="Submit"
+          className="w-full btn  border-none rounded-none  text-gray-500 bg-yellow-100  hover:bg-emerald-500"
         />
       </div>
-
-      <button className="btn btn-wide border-none rounded-none text-gray-500 bg-yellow-100  hover:bg-emerald-500 inline-flex items-center justify-center">
-        Book
-      </button>
     </form>
   );
 }
