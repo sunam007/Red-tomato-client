@@ -11,24 +11,28 @@ function ContactForm({ placeholder }) {
     const email = form.email.value;
     const subject = form.subject.value;
     const message = form.message.value;
-    const userInfoAndMessage = {
+    const contact = {
       fullName,
       email,
       subject,
       message,
     };
-    console.log(userInfoAndMessage);
+    console.log(contact);
+
+    //Post request to server
 
     axios
-      .post("api/userInfoAndMessage", {
-        userInfoAndMessage,
+      .post("http://localhost:5000/contacts", {
+        userInfoAndMessage: contact,
       })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+
+    form.reset();
   };
   return (
     <form
-      className="flex flex-col space-y-4 my-8 items-center"
+      className="flex flex-col items-center space-y-4 my-8 "
       onSubmit={handleFormSubmit}
     >
       <input
@@ -39,20 +43,20 @@ function ContactForm({ placeholder }) {
       />
       <input
         name="email"
-        type="text"
+        type="email"
         placeholder="Email Address"
         className="text-input"
       />
       <input
         name="subject"
-        type="Subject"
+        type="text"
         placeholder="Subject"
         className="text-input"
       />
       <textarea
         name="message"
         placeholder="Message"
-        class="textarea textarea-bordered rounded-none textarea-md w-full max-w-xs"
+        className="textarea textarea-bordered rounded-none textarea-md w-full max-w-xs"
       ></textarea>
 
       {/* Form submit button with event handler */}
