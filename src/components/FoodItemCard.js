@@ -31,7 +31,7 @@ function FoodItemCard({ meal }) {
         strCategory,
         strMealThumb,
         strQuantity,
-      };
+      }; // this object were created to filtered out rest of the unused values send by the themealdb api;
 
       axios
         .post("https://red-tomato-server.vercel.app/orders", filteredObject)

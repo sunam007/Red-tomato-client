@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import FoodContext from "../context/FoodContext";
 
 function HeaderCartIndicator({ itemCount = "0" }) {
+  const abc = useContext(FoodContext);
+  console.log(abc);
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle">

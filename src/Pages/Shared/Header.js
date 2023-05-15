@@ -4,9 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 import HeaderAvator from "../../components/HeaderAvator";
 import HeaderCartIndicator from "../../components/HeaderCartIndicator";
 import FoodContext from "../../context/FoodContext";
+import { UserContext } from "../../context/UserContext";
 
 const Header = () => {
   const { itemsInTheCart } = useContext(FoodContext);
+  // const { user } = useContext(UserContext);
+
   return (
     <div className="navbar bg-gray-950">
       <div className="navbar-start ">
