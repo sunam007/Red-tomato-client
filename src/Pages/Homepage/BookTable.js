@@ -10,7 +10,7 @@ function BookTable() {
       style={{
         backgroundImage: `url(${background})`,
       }}
-      className="bg-no-repeat bg-cover bg-bottom h-96 sm:h-32 md:h-96 lg:h-64 xl:h-96 "
+      className="bg-no-repeat bg-cover bg-bottom"
     >
       <div className="space-y-12 py-12">
         <HeaderText title="Book a Table" textColor="text-gray-100" />

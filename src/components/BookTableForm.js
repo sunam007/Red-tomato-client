@@ -7,7 +7,8 @@ import addDays from "date-fns/addDays";
 import "./BookTableForm.css";
 
 function BookTableForm() {
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   const handleBookTable = (event) => {
     event.preventDefault();
@@ -17,8 +18,6 @@ function BookTableForm() {
     const email = form.email.value;
     const phone = form.phone.value;
     const guests = form.guests.value;
-    const date = form.date.value;
-    const time = form.time.value;
 
     const bookingInfo = {
       fullName,
@@ -29,15 +28,15 @@ function BookTableForm() {
       time,
     };
     console.log(bookingInfo);
-    // axios
-    //   .post("http://localhost:5000/bookings", { bookingInfo })
-    //   .then((res) => console.log(res.data))
-    //   .catch((err) => console.log(err));
+    axios
+      .post("http://localhost:5000/bookings", { bookingInfo })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
 
     form.reset();
   };
   return (
-    <form>
+    <form onSubmit={handleBookTable}>
       <div className="w-10/12 md:w-9/12 sm:grid sm:grid-cols-1 sm:gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-6 mx-auto">
         <input
           name="fullName"
@@ -72,18 +71,22 @@ function BookTableForm() {
           minDate={new Date()} // todays date is the minimum date
           maxDate={addDays(new Date(), 15)}
           isClearable
+          withPortal
           className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
 
         <DatePicker
           showIcon
-          placeholderText="Date"
-          selected={date}
-          onChange={(date) => setDate(date)}
-          dateFormat={"dd/MM/yyyy"} //  MM in capital letter
-          minDate={new Date()} // todays date is the minimum date
-          maxDate={addDays(new Date(), 15)}
+          placeholderText="Time"
+          selected={time}
+          onChange={(time) => setTime(time)}
+          showTimeSelect
+          showTimeSelectOnly
+          timeIntervals={30}
+          timeCaption="Time"
+          dateFormat={"h:mm:aa"}
           isClearable
+          withPortal
           className="w-full input input-bordered rounded-none input-md  bg-white text-base font-medium text-gray-950"
         />
         <div></div>
