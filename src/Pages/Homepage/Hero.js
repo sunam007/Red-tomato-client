@@ -1,6 +1,6 @@
 import React from "react";
 import background from "../../assets/test/test-2.jpg";
-import logo from "../../assets/hero/redTomato logo rectangular.png";
+// import logo from "../../assets/hero/redTomato logo rectangular.png";
 
 function Hero({ image = "https://i.ibb.co/tJBbN44/hero-background.png" }) {
   return (
