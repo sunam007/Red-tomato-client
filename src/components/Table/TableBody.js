@@ -5,14 +5,22 @@ function TableBody({
   price = 5,
   quantity = 1,
   image = "https://picsum.photos/200",
+  objectId,
 }) {
+  console.log(objectId);
+  const handleDeleteItemFromCart = () => {
+    console.log("DEleted ", objectId);
+  };
   return (
     <tbody>
       <tr>
         <th>
           <label>
-            <button className="btn btn-ghost">
-              <i className="fa-solid fa-xmark"></i>
+            <button
+              onClick={() => handleDeleteItemFromCart(objectId)}
+              className="btn btn-ghost"
+            >
+              <i className="fa-solid fa-xmark"></i> {/* delete/ cross button */}
             </button>
           </label>
         </th>

@@ -19,6 +19,7 @@ function Table() {
             image={item.strMealThumb}
             price={item.strPrice}
             quantity={item.strQuantity}
+            objectId={item._id}
           />
         ))
       ) : (

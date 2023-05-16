@@ -6,4 +6,4 @@ export const API_LOOK_UP_BY_MEAL_ID = `https://www.themealdb.com/api/json/v1/1/l
 
 // Red Tomato api
 export const API_PREFIX_redtomato = "https://red-tomato-server.vercel.app";
-export const API_CART_ORDERS = `${API_PREFIX_redtomato}/orders`;
+export const API_CART_ORDERS = `${API_PREFIX_redtomato}/orders`; // "https://red-tomato-server.vercel.app/orders"
