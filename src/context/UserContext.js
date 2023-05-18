@@ -1,10 +1,40 @@
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { app } from "../firebase/firebase.config";
 
 export const UserContext = createContext();
 
 function UserProvider({ children }) {
+  const [loggedInUser, setLoggedInUser] = useState({});
+  const auth = getAuth(app);
+  const GoogleProvider = new GoogleAuthProvider(); // instance of google provider
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, GoogleProvider);
+      const user = result.user; // The signed-in user info.
+      setLoggedInUser(user);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const handleGoogleSignOut = async () => {
+    try {
+      await signOut(auth);
+      console.log("user successfully Signed out");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <UserContext.Provider value={{ user: "Akash" }}>
+    <UserContext.Provider
+      value={{ handleGoogleSignIn, handleGoogleSignOut, loggedInUser }}
+    >
       {children}
     </UserContext.Provider>
   );
