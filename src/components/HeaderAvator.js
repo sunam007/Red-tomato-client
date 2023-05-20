@@ -4,25 +4,33 @@ import { UserContext } from "../context/UserContext";
 
 const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
   const { handleGoogleSignOut, loggedInUser } = useContext(UserContext);
-
-  console.log(loggedInUser);
-
   const { displayName, email, photoURL, uid } = loggedInUser;
 
   const loginVisibilityClassName = email && uid ? "hidden" : "";
-  const signOutVisibilityClassName = email && uid ? " " : "hidden";
+  const signOutVisibilityClassName = email && uid ? "" : "hidden";
+  // const avatarToggle = email $$ uid ?{ <img src={photoURL} alt="" /> }
+  // const displayNameVisibilityClassName
 
   return (
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-8 rounded-full">
-          <img src={photoURL} alt="" />
+          {email && uid ? (
+            <img src={photoURL} alt="" />
+          ) : (
+            <i className="fa-solid fa-user text-xl"></i>
+          )}
         </div>
       </label>
       <ul
-        tabIndex={2}
+        tabIndex={0}
         className="w-48 menu menu-compact rounded dropdown-content shadow bg-base-100 space-y-2 mt-3 p-2   "
       >
+        {displayName && (
+          <li>
+            <p className="text-gray-100">{`${displayName}`}</p>
+          </li>
+        )}
         <li>
           <button
             onClick={handleGoogleSignOut}

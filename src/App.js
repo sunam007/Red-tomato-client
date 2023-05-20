@@ -11,6 +11,7 @@ import Login from "./Pages/Login.js/Login";
 import Register from "./Pages/Register.js/Register";
 import Footer from "./Pages/Shared/Footer";
 import Dishes from "./Pages/Dishes/Dishes";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -21,9 +22,30 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/dish/:foodCategory" element={<Dishes />} />
-        <Route path="/cart/" element={<Cart />} />
-        <Route path="/cart/:idMeal" element={<Cart />} />
-        <Route path="/checkout" element={<CheckOut />} />
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/cart/:idMeal"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <PrivateRoute>
+              <CheckOut />
+            </PrivateRoute>
+          }
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
