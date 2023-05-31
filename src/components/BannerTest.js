@@ -1,6 +1,6 @@
 import React from "react";
 
-function Banner({ title, subTitle }) {
+function BannerTest({ title, subTitle }) {
   return (
     <div
       className="hero h-64 md:h-72 lg:h-72 xl:h-96 "
@@ -21,4 +21,4 @@ function Banner({ title, subTitle }) {
   );
 }
 
-export default Banner;
+export default BannerTest;

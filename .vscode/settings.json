@@ -1,6 +1,10 @@
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.fontSize": 14,
-  "editor.fontWeight": "normal"
+  "editor.fontSize": 12,
+  "editor.fontWeight": "normal",
+  "debug.console.fontSize": 12,
+  "scm.inputFontSize": 12,
+  "terminal.integrated.fontSize": 12,
+  "markdown.preview.fontSize": 12
 }
