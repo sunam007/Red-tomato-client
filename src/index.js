@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { QueryClientProvider, QueryClient } from "react-query";
 
 import UserProvider from "./context/UserContext";
 import { FoodProvider } from "./context/FoodContext";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +17,9 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <FoodProvider>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <App />
+          </QueryClientProvider>
         </FoodProvider>
       </UserProvider>
     </BrowserRouter>

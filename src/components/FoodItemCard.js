@@ -7,47 +7,20 @@ import "./FoodItemCard.css";
 import FoodContext from "../context/FoodContext";
 
 function FoodItemCard({ meal }) {
-  const { strMeal: title, strPrice: price, strMealThumb: image } = meal;
   const [quantity, setQuantity] = useState(1);
+
+  const { mealTitle: title, mealPrice: price, mealThumb: image } = meal;
+
   const navigate = useNavigate();
+
   const { setItemsInTheCart } = useContext(FoodContext);
 
+  //event handler
+
   const handleAddToCart = (mealId) => {
-    axios.get(`${API_LOOK_UP_BY_MEAL_ID}?i=${mealId}`).then((res) => {
-      const updatedMeals = res.data?.meals.map((mealItem) => ({
-        ...mealItem,
-        strPrice: price,
-        strQuantity: quantity,
-      }));
-
-      const updatedMealsObject = updatedMeals[0];
-
-      const { idMeal, strMeal, strCategory, strMealThumb, strQuantity } =
-        updatedMealsObject;
-
-      const filteredObject = {
-        idMeal,
-        strMeal,
-        strCategory,
-        strMealThumb,
-        strQuantity,
-      }; // this object were created to filtered out rest of the unused values send by the themealdb api;
-
-      axios
-        .post("https://red-tomato-server.vercel.app/orders", filteredObject)
-        .then((response) => {
-          const acknowledged = response.data.acknowledged; // boolean value
-
-          if (acknowledged) {
-            navigate("/cart");
-
-            axios
-              .get(API_CART_ORDERS)
-              .then((res) => setItemsInTheCart(res.data))
-              .catch((err) => console.log(err));
-          }
-        });
-    });
+    axios
+      .get(`http://localhost:5000/api/meals/${mealId}`)
+      .then((res) => setItemsInTheCart(res.data));
   };
 
   return (
@@ -87,7 +60,7 @@ function FoodItemCard({ meal }) {
 
         <Link>
           <button
-            onClick={() => handleAddToCart(meal.idMeal)} // Add items to the cart //
+            onClick={() => handleAddToCart(meal.mealId)} // Add items to the cart //
             className="py-2 px-4 mb bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 my-4 w-full flex items-baseline justify-center"
           >
             Add to cart

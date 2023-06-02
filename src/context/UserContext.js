@@ -7,6 +7,9 @@ export const UserContext = createContext();
 function UserProvider({ children }) {
   const [loggedInUser, setLoggedInUser] = useState({});
   const GoogleProvider = new GoogleAuthProvider(); // instance of google provider
+
+  //sign in
+
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, GoogleProvider);
@@ -16,6 +19,9 @@ function UserProvider({ children }) {
       console.log(error);
     }
   };
+
+  // sign out
+
   const handleGoogleSignOut = async () => {
     try {
       await signOut(auth);

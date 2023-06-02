@@ -8,12 +8,12 @@ function FoodProvider({ children }) {
   const [meal, setMeal] = useState([]);
   const [itemsInTheCart, setItemsInTheCart] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(API_CART_ORDERS)
-      .then((res) => setItemsInTheCart(res.data))
-      .catch((err) => console.log(err));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(API_CART_ORDERS)
+  //     .then((res) => setItemsInTheCart(res.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <FoodContext.Provider
