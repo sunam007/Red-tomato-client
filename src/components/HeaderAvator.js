@@ -3,11 +3,15 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
-  const { handleGoogleSignOut, loggedInUser } = useContext(UserContext);
-  const { displayName, email, photoURL, uid } = loggedInUser;
+  const { handleGoogleSignOut, user } = useContext(UserContext);
 
-  const loginVisibilityClassName = email && uid ? "hidden" : "";
-  const signOutVisibilityClassName = email && uid ? "" : "hidden";
+  const { displayName = "", email = "", photoURL = "", uid = "" } = user || {};
+  console.log(email, uid);
+
+  const loginVisibilityClassName = user ? "hidden" : "";
+
+  const signOutVisibilityClassName = user ? "" : "hidden";
+
   // const avatarToggle = email $$ uid ?{ <img src={photoURL} alt="" /> }
   // const displayNameVisibilityClassName
 
@@ -15,7 +19,7 @@ const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-8 rounded-full">
-          {email && uid ? (
+          {user ? (
             <img src={photoURL} alt="" />
           ) : (
             <i className="fa-solid fa-user text-xl"></i>

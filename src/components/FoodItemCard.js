@@ -13,14 +13,18 @@ function FoodItemCard({ meal }) {
 
   const navigate = useNavigate();
 
-  const { setItemsInTheCart } = useContext(FoodContext);
+  const { itemsInTheCart, setItemsInTheCart } = useContext(FoodContext);
 
   //event handler
 
   const handleAddToCart = (mealId) => {
-    axios
-      .get(`http://localhost:5000/api/meals/${mealId}`)
-      .then((res) => setItemsInTheCart(res.data));
+    axios.get(`http://localhost:5000/api/meals/${mealId}`).then((res) => {
+      const order = { ...res.data[0], mealQuantity: quantity };
+
+      axios
+        .post(`http://localhost:5000/api/orders`, order)
+        .then((res) => console.log(res.data));
+    });
   };
 
   return (

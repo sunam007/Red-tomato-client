@@ -1,12 +1,16 @@
 import React, { createContext, useState } from "react";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [loggedInUser, setLoggedInUser] = useState({});
+
   const GoogleProvider = new GoogleAuthProvider(); // instance of google provider
+
+  const [user] = useAuthState(auth);
 
   //sign in
 
@@ -33,7 +37,7 @@ function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ handleGoogleSignIn, handleGoogleSignOut, loggedInUser }}
+      value={{ handleGoogleSignIn, handleGoogleSignOut, loggedInUser, user }}
     >
       {children}
     </UserContext.Provider>
