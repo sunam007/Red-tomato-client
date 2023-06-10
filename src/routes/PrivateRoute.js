@@ -12,7 +12,7 @@ function PrivateRoute({ children }) {
 
   console.log(user);
 
-  console.log("looged in user", loggedInUser);
+  console.log("logged in user", loggedInUser);
 
   const location = useLocation();
 

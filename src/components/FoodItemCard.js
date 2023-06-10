@@ -1,34 +1,53 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
-import { API_CART_ORDERS, API_LOOK_UP_BY_MEAL_ID } from "../api/endpoints";
 import "./FoodItemCard.css";
-import FoodContext from "../context/FoodContext";
+import { UserContext } from "../context/UserContext";
+import { validateOrder } from "../utils/validation/order.schema";
 
 function FoodItemCard({ meal }) {
   const [quantity, setQuantity] = useState(1);
 
   const { mealTitle: title, mealPrice: price, mealThumb: image } = meal;
 
-  // const navigate = useNavigate();
+  const { user } = useContext(UserContext); // get user state
 
-  // const { itemsInTheCart, setItemsInTheCart } = useContext(FoodContext);
+  //------- get logged in user properties ------------//
+  const { displayName = "", email = "", photoURL = "", uid = "" } = user || {};
 
-  //event handler
+  //--------- Event Handler -------------//
 
   const handleAddToCart = async (mealId) => {
     try {
+      if (!user) {
+        alert("Login First");
+        console.log("User not logged-in");
+        return;
+      }
+
       const res = await axios.get(`http://localhost:5000/api/meals/${mealId}`);
-      const order = { ...res.data[0], mealQuantity: quantity };
+      const order = {
+        ...res.data[0],
+        mealQuantity: quantity,
+        customerEmail: email,
+      };
+
+      const { value, error } = validateOrder(order);
+
+      if (error) {
+        console.log(error);
+        return;
+      }
 
       const response = await axios.post(
         `http://localhost:5000/api/orders`,
-        order
+        value
       );
+
       console.log(response.data);
     } catch (error) {
-      console.error("Error from FoodItemCard: ", error);
+      console.error("Error from FoodItemCard: ", error.response);
     }
   };
 
