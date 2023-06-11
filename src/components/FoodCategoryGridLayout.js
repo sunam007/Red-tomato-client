@@ -2,19 +2,14 @@ import axios from "axios";
 import { useQuery } from "react-query";
 
 import FoodCategoryCard from "./FoodCategoryCard";
+import Spinner from "./Spinner";
 
 const getCategories = () => axios.get("http://localhost:5000/api/categories");
 
 function FoodCategoryGridLayout() {
   const { isLoading, data } = useQuery("get categories", getCategories);
 
-  if (isLoading) {
-    return (
-      <center>
-        <h2>Loading...</h2>{" "}
-      </center>
-    );
-  }
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="w-10/12 mx-auto py-6">

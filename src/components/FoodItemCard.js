@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./FoodItemCard.css";
@@ -11,10 +11,11 @@ function FoodItemCard({ meal }) {
 
   const { mealTitle: title, mealPrice: price, mealThumb: image } = meal;
 
-  const { user } = useContext(UserContext); // get user state
+  const { user } = useContext(UserContext); // get user states
 
-  //------- get logged in user properties ------------//
-  const { displayName = "", email = "", photoURL = "", uid = "" } = user || {};
+  const { email = "" } = user || {}; //logged in user properties
+
+  const navigate = useNavigate();
 
   //--------- Event Handler -------------//
 
@@ -38,14 +39,16 @@ function FoodItemCard({ meal }) {
       if (error) {
         console.log(error);
         return;
+      } else {
+        const response = await axios.post(
+          `http://localhost:5000/api/orders`,
+          order
+        );
+
+        console.log(response.data);
       }
 
-      const response = await axios.post(
-        `http://localhost:5000/api/orders`,
-        value
-      );
-
-      console.log(response.data);
+      navigate("/cart");
     } catch (error) {
       console.error("Error from FoodItemCard: ", error.response);
     }
