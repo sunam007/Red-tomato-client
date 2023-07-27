@@ -1,5 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import "./FoodItemCard.css";
@@ -7,9 +7,10 @@ import { UserContext } from "../context/UserContext";
 import { validateOrder } from "../utils/validation/order.schema";
 
 function FoodItemCard({ meal }) {
+  const [orderedMeal, setOrderedMeal] = useState([]);
   const [quantity, setQuantity] = useState(1);
 
-  const { mealTitle: title, mealPrice: price, mealThumb: image } = meal;
+  const { mealId, mealTitle: title, mealPrice: price, mealThumb: image } = meal;
 
   const { user } = useContext(UserContext); // get user states
 
@@ -23,34 +24,31 @@ function FoodItemCard({ meal }) {
     try {
       if (!user) {
         alert("Login First");
-        console.log("User not logged-in");
+        navigate("/login");
         return;
       }
 
       const res = await axios.get(`http://localhost:5000/api/meals/${mealId}`);
+
       const order = {
         ...res.data[0],
+        _id: null,
         mealQuantity: quantity,
         customerEmail: email,
       };
 
       const { value, error } = validateOrder(order);
 
-      if (error) {
-        console.log(error);
-        return;
-      } else {
-        const response = await axios.post(
-          `http://localhost:5000/api/orders`,
-          order
-        );
+      if (error) return console.log(error);
 
-        console.log(response.data);
-      }
+      const response = await axios.post(
+        `http://localhost:5000/api/orders`,
+        order
+      );
 
       navigate("/cart");
     } catch (error) {
-      console.error("Error from FoodItemCard: ", error.response);
+      console.error("Error from FoodItemCard: ", error);
     }
   };
 
@@ -89,15 +87,15 @@ function FoodItemCard({ meal }) {
           </button>
         </div>
 
-        <Link>
+        <div>
           <button
-            onClick={() => handleAddToCart(meal.mealId)} // Add items to the cart //
+            onClick={() => handleAddToCart(mealId)} // Add items to the cart //
             className="py-2 px-4 mb bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 disabled:opacity-50 my-4 w-full flex items-baseline justify-center"
           >
             Add to cart
             <i className="fa-solid fa-cart-shopping icon-spacing" />
           </button>
-        </Link>
+        </div>
       </div>
     </div>
   );

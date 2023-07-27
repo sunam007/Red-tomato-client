@@ -7,6 +7,7 @@ export const UserContext = createContext();
 
 function UserProvider({ children }) {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const GoogleProvider = new GoogleAuthProvider();
 
@@ -19,6 +20,8 @@ function UserProvider({ children }) {
 
       const user = result.user; // The signed-in user info.
 
+      console.log("logged in user is: ", result.user);
+
       setLoggedInUser(user);
     } catch (error) {
       console.log(error);
@@ -29,7 +32,6 @@ function UserProvider({ children }) {
   const handleGoogleSignOut = async () => {
     try {
       await signOut(auth);
-      console.log("user successfully Signed out");
     } catch (error) {
       console.error(error);
     }
@@ -37,7 +39,12 @@ function UserProvider({ children }) {
 
   return (
     <UserContext.Provider
-      value={{ handleGoogleSignIn, handleGoogleSignOut, loggedInUser, user }}
+      value={{
+        handleGoogleSignIn,
+        handleGoogleSignOut,
+        loggedInUser,
+        user,
+      }}
     >
       {children}
     </UserContext.Provider>

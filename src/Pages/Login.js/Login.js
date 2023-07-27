@@ -6,6 +6,7 @@ import { UserContext } from "../../context/UserContext";
 
 const Login = ({ type = "Login" }) => {
   const { handleGoogleSignIn } = useContext(UserContext);
+
   // console.log(signInWithPopup);
   return (
     <>

@@ -5,11 +5,11 @@ export const orderSchema = Joi.object({
   mealId: Joi.number().min(5).required(),
   mealTitle: Joi.string().min(3).max(50).required(),
   mealCategory: Joi.string().min(3).max(50).required(),
-  mealThumb: Joi.string().min(3).required(),
+  mealThumb: Joi.string().required(),
   mealThumbSmall: Joi.any().optional(),
   mealTags: Joi.array().optional(),
-  mealPrice: Joi.number().min(2).required(),
-  mealQuantity: Joi.number().min(1).max(2).required(),
+  mealPrice: Joi.number().required(),
+  mealQuantity: Joi.number().required(),
   customerName: Joi.string().min(3).max(100).optional(),
   customerEmail: Joi.string()
     .email({ tlds: { allow: ["com", "net"] } })
@@ -18,5 +18,6 @@ export const orderSchema = Joi.object({
     .required(),
 });
 
-export const validateOrder = (objectToBeValidated) =>
-  orderSchema.validate(objectToBeValidated);
+export const validateOrder = (objectToBeValidated) => {
+  return orderSchema.validate(objectToBeValidated);
+};

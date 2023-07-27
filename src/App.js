@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 import Header from "./Pages/Shared/Header";
 import Homepage from "./Pages/Homepage/Homepage";
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       {/* After testing , move this router to a Layout Component */}
+      <Toaster />
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />

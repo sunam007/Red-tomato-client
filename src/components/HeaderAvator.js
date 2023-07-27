@@ -6,7 +6,6 @@ const HeaderAvator = ({ image = "https://picsum.photos/200" }) => {
   const { handleGoogleSignOut, user } = useContext(UserContext);
 
   const { displayName = "", email = "", photoURL = "", uid = "" } = user || {};
-  console.log(email, uid);
 
   const loginVisibilityClassName = user ? "hidden" : "";
 

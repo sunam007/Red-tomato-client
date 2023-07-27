@@ -1,26 +1,28 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-import { UserContext } from "../context/UserContext";
 import { auth } from "../firebase/firebase.config";
+import Spinner from "../components/Spinner";
 
 function PrivateRoute({ children }) {
-  const { loggedInUser } = useContext(UserContext);
-
-  const [user] = useAuthState(auth);
-
-  console.log(user);
-
-  console.log("logged in user", loggedInUser);
+  const [user, loading] = useAuthState(auth);
 
   const location = useLocation();
+  console.log(location);
 
-  console.log("location is:", location);
+  if (loading)
+    return (
+      <>
+        <div className="w-screen h-screen flex justify-center items-center bg-white">
+          <Spinner />
+        </div>
+      </>
+    );
 
-  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  if (user) return children;
 
-  return children;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 }
 
 export default PrivateRoute;

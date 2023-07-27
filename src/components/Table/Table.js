@@ -1,4 +1,3 @@
-import React, { useContext } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -6,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
 import TableFooter from "./TableFooter";
-import FoodContext from "../../context/FoodContext";
+
 import { auth } from "../../firebase/firebase.config";
 import Spinner from "../Spinner";
 
@@ -15,7 +14,7 @@ import Spinner from "../Spinner";
 function Table() {
   const getOrdersByEmail = async (userEmail) => {
     const response = await axios.get(
-      `http://localhost:5000/api/orders/${userEmail}`
+      `http://localhost:5000/api/orders?customerEmail=${userEmail}`
     );
     return response.data;
   };
@@ -24,18 +23,16 @@ function Table() {
 
   const { email = "" } = user || {};
 
-  // fetch user specific orders using react query and then show it to Table body
-
   const { isLoading, data } = useQuery("get_user_orders_by_email", () =>
     getOrdersByEmail(email)
   );
-  const date = new Date();
 
-  console.log(date, "isLoading: ", isLoading, "data is: ", data);
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center">
+        <Spinner />
+      </div>
+    );
 
   return (
     <>
@@ -43,7 +40,9 @@ function Table() {
         <TableHeader />
 
         {!isLoading &&
-          data?.map((order) => <TableBody key={order.mealId} order={order} />)}
+          data?.data?.result.map((order) => (
+            <TableBody key={order.mealId} order={order} />
+          ))}
 
         <TableFooter />
       </table>
