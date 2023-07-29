@@ -1,23 +1,14 @@
-import React from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
+const Order = ({ order, handleDeleteItemFromCart }) => {
+  const { _id, mealTitle, mealThumb, mealPrice, mealQuantity } = order;
 
-const Order = ({
-  order,
-  cartItems,
-  onUpdateCart,
-  handleDeleteItemFromCart,
-}) => {
-  const { _id, mealId, mealTitle, mealThumb, mealPrice, mealQuantity } = order;
-
-  console.log(
-    mealTitle,
-    "quantity: ",
-    mealQuantity,
-    "*",
-    mealPrice,
-    mealQuantity * mealPrice
-  );
+  // console.log(
+  //   mealTitle,
+  //   "quantity: ",
+  //   mealQuantity,
+  //   "*",
+  //   mealPrice,
+  //   mealQuantity * mealPrice
+  // );
 
   // const handleDeleteItemFromCart = async (_id) => {
   //   const proceedDeletion = window.confirm("Do youwant to delete this item ?");
@@ -65,6 +56,7 @@ const Order = ({
 
         <div className="card-actions justify-between items-baseline">
           <p>Total: ${mealPrice * mealQuantity}</p>
+
           <label>
             <button
               onClick={() => handleDeleteItemFromCart(_id)}

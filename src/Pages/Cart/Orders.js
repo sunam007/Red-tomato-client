@@ -37,11 +37,15 @@ const Orders = ({ cartItems, onUpdateCart }) => {
         console.log(response);
 
         if (response.status === 204) {
-          toast.success("Item has been deleted");
+          return toast.success("Item has been deleted");
           // Filter out the deleted item from cartItems
-          const updatedCartItems = cartItems.filter((item) => item._id !== _id);
+          // const updatedCartItems = cartItems.filter((item) => item._id !== _id);
+          // const updatedCartItems = cartItems.filter((item) =>
+          //   console.log(item)
+          // );
+          // console.log(updatedCartItems);
           // Call the onUpdateCart function to update the cart in the parent component
-          onUpdateCart(updatedCartItems);
+          // onUpdateCart(updatedCartItems);
         }
       }
     } catch (error) {
@@ -62,8 +66,6 @@ const Orders = ({ cartItems, onUpdateCart }) => {
           <Order
             key={order.mealId}
             order={order}
-            cartItems={cartItems}
-            onUpdateCart={onUpdateCart}
             handleDeleteItemFromCart={handleDeleteItemFromCart}
           />
         ))}
