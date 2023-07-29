@@ -1,9 +1,12 @@
-import HeroTest from "./HeroTest";
+import BookTable from "./BookTable";
+import FeaturedMeal from "./FeaturedMeal";
+import Hero from "./Hero";
 
 const Homepage = () => {
   return (
     <>
-      <HeroTest />
+      <Hero />
+      <FeaturedMeal />
     </>
   );
 };

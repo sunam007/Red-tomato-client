@@ -7,7 +7,7 @@ import Spinner from "./Spinner";
 const getCategories = () => axios.get("http://localhost:5000/api/categories");
 
 function FoodCategoryGridLayout() {
-  const { isLoading, data } = useQuery("get categories", getCategories);
+  const { isLoading, data } = useQuery("get-categories", getCategories);
 
   if (isLoading) return <Spinner />;
 
